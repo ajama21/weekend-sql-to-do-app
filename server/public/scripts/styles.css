@@ -1,7 +1,103 @@
-body {
-background-color: rgb(47, 116, 214);
-}
 
 h1{
 text-align: center;
+}
+
+/* Style the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* Style the table header (th) */
+th {
+    background-color: #007acc;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style the table rows (alternating row colors) */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style the table data cells (td) */
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Style links inside table cells */
+td a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+/* Hover effect for table rows */
+tr:hover {
+    background-color: #cfd8dc;
+}
+
+/* Style the "Add New Task" section */
+#addTask {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the "Add New Task" section heading */
+#addTask h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Style form labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style form inputs and textarea */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+/* Style form select dropdown */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+/* Style the "Add Task" button */
+button[type="submit"] {
+    background-color: #007acc;
+    color: #005f9e;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+/* Apply a hover effect to the "Add Task" button */
+button[type="submit"]:hover {
+    background-color: #005f9e;
 }
