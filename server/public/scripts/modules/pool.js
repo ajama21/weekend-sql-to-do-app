@@ -1,11 +1,11 @@
-const pg = require('pg');
+// const pg = require('pg');
 
-const pool = new pg.Pool({
-    database: 'todos',
+// const pool = new pg.Pool({
+//     database: 'todos',
 
-    host: 'localhost',
+//     host: 'localhost',
 
-    port: 5432
-});
+//     port: 5432
+// });
 
-module.exports = pool;
+// module.exports = pool;
