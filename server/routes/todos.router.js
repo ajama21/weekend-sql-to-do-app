@@ -18,19 +18,6 @@ todosRouter.get("/", (req, res) => {
     .then((dbRes) => {
       console.log("here is what we got back:");
       console.log(dbRes.rows);
-      // dbRes.rows should evaluate to something like:
-      // [
-      //  {
-      //    id: 1,
-      //    text: 'take out the trash',
-      //    isComplete: false
-      //  },
-      //  {
-      //    id: 2,
-      //    text: 'eat supper',
-      //    isComplete: false
-      //  }
-      // ]
     })
     .catch((dbErr) => {});
 });
