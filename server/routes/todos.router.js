@@ -16,8 +16,9 @@ todosRouter.get("/", (req, res) => {
   pool
     .query(sqlText)
     .then((dbRes) => {
-      console.log("here is what we got back:");
-      console.log(dbRes.rows);
+      // console.log("here is what we got back:");
+      // console.log(dbRes.rows);
+      res.send(dbRes.rows)
     })
     .catch((dbErr) => {});
 });

@@ -12,7 +12,7 @@
     <h1>🗒️ Task Manager 🗒️</h1>   
     <section id="addTask">
         <h2>Add New Task</h2>
-        <form id="taskForm">
+       <section id="taskForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
     
@@ -21,12 +21,12 @@
     
             <label for="isComplete">Is Complete:</label>
             <select id="isComplete" name="isComplete">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option value=false>False</option>
+                <option value=true>True</option>
             </select>
     
-            <button type="submit" id="addTask">Add Task</button>
-        </form>
+            <button type="submit" id="newTask">Add Task</button>
+        </section>
     </section>
     
     <table>
@@ -38,7 +38,7 @@
                 <th>Is Complete</th>
             </tr>
         </thead>
-        <tbody id="addTask">
+        <tbody id="addTaskTable">
             <tr>
                 <td>5</td>
                 <td>Pay utility bills</td>

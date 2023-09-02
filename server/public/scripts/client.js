@@ -1,12 +1,11 @@
 // console.log("js works");
-
 $(document).ready(onReady);
 
 function onReady() {
   getTasks();
   //   console.log("jQuery works");
 
-  $("#addTask").on("click", addTask);
+  $("#newTask").on("click", addTask);
 }
 
 function getTasks() {
@@ -16,8 +15,8 @@ function getTasks() {
   })
     .then((res) => {
       console.log("GET tasks works:", res);
-      let tasks = res;
-      render(tasks);
+      let tasksFromServer = res;
+      render(tasksFromServer);
     })
     .catch((err) => {
       console.log("GET tasks err:", err);
@@ -37,17 +36,31 @@ function addTask(event) {
   $.ajax({
     type: "POST",
     url: "/todos",
-    data: {
-      title: "title",
-      description: "description",
-      is_complete: "boolean",
-    },
+    data: taskReceivedAsObject
   }).then(function (response) {
+    getTasks();
     $("#title").val(""), $("#description").val(""), $("#isComplete").val("");
     getTasks();
   });
 }
 
-function render(tasks) {
+function render(tasksFromServer) {
+  $('#addTaskTable').empty();
+
+  for (let task of tasksFromServer) {
+    console.log('task we are looking at:', task);
+
+    let $newRow = $(`
+    <tr>
+      <td>${task.title}</td>
+      <td>${task.description}</td>
+      <td>${task.is_complete}</td>
+    </tr>
+    `);
+    $newRow.data('id', task.id);
+    $('#addTaskTable').append($newRow);
+    console.log();
     
+    
+  }
 }
