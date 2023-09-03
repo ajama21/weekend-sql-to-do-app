@@ -3,7 +3,7 @@ $(document).ready(onReady);
 
 function onReady() {
   getTasks();
-    // console.log("jQuery works");
+  // console.log("jQuery works");
 
   $("#newTask").on("click", addTask);
   $("#addTaskTable").on("click", ".delete_button", deleteTask);
@@ -51,15 +51,27 @@ function render(tasksFromServer) {
   for (let task of tasksFromServer) {
     // console.log("task we are looking at:", task);
 
-    let $newRow = $(`
-    <tr id=${task.id}>
+    let $newRow;
+
+    if (task.is_complete === true) {
+      $newRow = `<tr class="color_change">
+      <td>${task.title}</td> 
+      <td>${task.description}</td>
+      <td>${task.is_complete}</td>
+      <td><button class="delete_button">DELETE</button></td>
+      <td><button class="update_button">UPDATE</button></td>
+      </tr>`;
+    } else {
+      $newRow = `
+      <tr>
       <td>${task.title}</td>
       <td>${task.description}</td>
       <td>${task.is_complete}</td>
       <td><button class="delete_button">DELETE</button></td>
       <td><button class="update_button">UPDATE</button></td>
-    </tr>
-    `);
+      </tr>`;
+    }
+    $newRow = $($newRow);
     $newRow.data("id", task.id);
     $("#addTaskTable").append($newRow);
   }
@@ -102,7 +114,7 @@ function updateTask() {
       //   idToUpdate
       // );
       getTasks();
-      $(this).prop('disabled', true)
+      $(this).prop("disabled", true);
     })
     .catch((err) => {
       alert("Error on delete, id:", idToUpdate);

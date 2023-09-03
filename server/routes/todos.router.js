@@ -11,7 +11,7 @@ const pool = require("../public/scripts/modules/pool.js");
 todosRouter.get("/", (req, res) => {
   // console.log("against all odds, it worked!");
   const sqlText = `
-      SELECT * FROM "todos"
+      SELECT * FROM "todos" ORDER BY "id";
     `;
   pool
     .query(sqlText)
