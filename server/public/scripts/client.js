@@ -107,7 +107,7 @@ function updateTask(){
             console.log('delete successful, this item no longer exists: ', idToUpdate);
             getTasks();
             console.log($(this).parent().parent());
-            $(`#${idToUpdate}`).addClass('done')
+            // $(`#${idToUpdate}`).addClass('done')
             // $(this).addClass('.done')
         }
     )
