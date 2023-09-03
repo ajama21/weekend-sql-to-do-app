@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,28 @@
     <script src="./scripts/client.js"></script>
     <link rel="stylesheet" href="./scripts/styles.css">
 </head>
+
 <body>
-    <h1>🗒️ Task Manager 🗒️</h1>   
+    <h1>🗒️ Task Manager 🗒️</h1>
     <section id="addTask">
         <h2>Add New Task</h2>
-       <section id="taskForm">
+        <section id="taskForm">
             <label for="title">Task:</label>
-            <input type="text" id="title" name="title" required>
-    
+            <input type="text" id="title" name="title" placeholder="Task to do..." required>
+
             <label for="description">Description:</label>
-            <textarea id="description" name="description"></textarea>
-    
+            <textarea id="description" name="description" placeholder="Task description..."></textarea>
+
             <!-- <label for="isComplete">Is Complete:</label>
             <select id="isComplete" name="isComplete">
                 <option value=false>False</option>
                 <option value=true>True</option>
             </select> -->
-    
+
             <button type="submit" id="newTask">Add Task</button>
         </section>
     </section>
-    
+
     <table>
         <thead>
             <tr>
@@ -37,14 +39,8 @@
                 <th>Is Complete</th>
             </tr>
         </thead>
-        <tbody id="addTaskTable">
-            <tr>
-                <td>5</td>
-                <td>Pay utility bills</td>
-                <td>Electricity, water, and internet bills</td>
-                <td>No</td>
-            </tr>
-        </tbody>
+        <tbody id="addTaskTable"> </tbody>
     </table>
 </body>
+
 </html>
