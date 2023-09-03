@@ -30,12 +30,12 @@ todosRouter.post("/", (req, res) => {
   console.log("req.body:", req.body);
 
   const queryText = `
-  INSERT INTO "todos" (title, description, is_complete)
-  VALUES ($1, $2, $3)
+  INSERT INTO "todos" (title, description)
+  VALUES ($1, $2)
   `;
 
   pool
-    .query(queryText, [newTask.title, newTask.description, newTask.is_complete])
+    .query(queryText, [newTask.title, newTask.description])
     .then((result) => {
       res.sendStatus(200);
     })
@@ -47,11 +47,43 @@ todosRouter.post("/", (req, res) => {
 
 // DELETE
 
+todosRouter.delete("/:id", (req, res) => {
+  let idToDelete = req.params.id; // This is the id the client sends us in the url
 
-
+  let mySqlQuery = `
+  DELETE FROM "todos" WHERE id = $1;
+  `;
+  pool
+    .query(mySqlQuery, [idToDelete])
+    .then((response) => {
+      console.log("delete request successful", idToDelete);
+      res.sendStatus(202);
+    })
+    .catch((err) => {
+      console.log(`delete request failed: ${idToDelete}`, err);
+      res.sendStatus(500);
+    });
+});
 
 // PUT
 
+todosRouter.put("/:id", (req, res) => {
+  let idToUpdate = req.params.id; // This is the id the client sends us in the url
 
+  let mySqlQuery = `
+  UPDATE "todos" SET "is_complete" = true WHERE id = $1;
+  `;
+
+  pool
+    .query(mySqlQuery, [idToUpdate])
+    .then((response) => {
+      console.log("update request successful", idToUpdate);
+      res.sendStatus(202);
+    })
+    .catch((err) => {
+      console.log(`update request failed: ${idToUpdate}`, err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = todosRouter;

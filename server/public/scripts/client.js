@@ -6,7 +6,9 @@ function onReady() {
   //   console.log("jQuery works");
 
   $("#newTask").on("click", addTask);
-  $('#newTask').on('click', '.delete_button', deleteTask)
+  $('#addTaskTable').on('click', '.delete_button', deleteTask)
+  $('#addTaskTable').on('click', '.update_button', updateTask)
+
 }
 
 function getTasks() {
@@ -15,7 +17,7 @@ function getTasks() {
     url: "/todos",
   })
     .then((res) => {
-      console.log("GET tasks works:", res);
+      // console.log("GET tasks works:", res);
       let tasksFromServer = res;
       render(tasksFromServer);
     })
@@ -30,7 +32,7 @@ function addTask(event) {
   let taskReceivedAsObject = {
     title: $("#title").val(),
     description: $("#description").val(),
-    is_complete: $("#isComplete").val(),
+    // is_complete: $("#isComplete").val(),
   };
   console.log("taksReceivedAsObject is:", taskReceivedAsObject);
 
@@ -49,13 +51,15 @@ function render(tasksFromServer) {
   $("#addTaskTable").empty();
 
   for (let task of tasksFromServer) {
-    console.log("task we are looking at:", task);
+    // console.log("task we are looking at:", task);
 
     let $newRow = $(`
-    <tr>
+    <tr id=${task.id}>
       <td>${task.title}</td>
       <td>${task.description}</td>
-      <td><button class="delete_button">❌</button></td>
+      <td>${task.is_complete}</td>
+      <td><button class="delete_button">DELETE</button></td>
+      <td><button class="update_button">UPDATE</button></td>
     </tr>
     `);
     $newRow.data("id", task.id);
@@ -63,9 +67,53 @@ function render(tasksFromServer) {
   }
 }
 
+// DELETE
 
-function deleteTask() {
-  console.log('delete button was clicked!')
-};
+function deleteTask(){
+  console.log('delete button clicked!');
+  let idToDelete = $(this).parent().parent().data('id');
+  console.log(idToDelete);
 
+  $.ajax({
+    method: 'DELETE',
+    url: `/todos/${idToDelete}` // We pass the id to the server in url as a url parameter
+})
+    .then(
+        (results) => {
+            console.log('delete successful, this item no longer exists: ', idToDelete);
+            getTasks();
+        }
+    )
+    .catch(
+        (err) => {
+            alert("Error on delete, id:", idToDelete);
+        }
+    )
 
+}
+
+function updateTask(){
+
+  console.log('update button clicked!');
+  let idToUpdate = $(this).parent().parent().data('id');
+  console.log(idToUpdate);
+
+  $.ajax({
+    method: 'PUT',
+    url: `/todos/${idToUpdate}` // We pass the id to the server in url as a url parameter
+})
+    .then(
+        (results) => {
+            console.log('delete successful, this item no longer exists: ', idToUpdate);
+            getTasks();
+            console.log($(this).parent().parent());
+            $(`#${idToUpdate}`).addClass('done')
+            // $(this).addClass('.done')
+        }
+    )
+    .catch(
+        (err) => {
+            alert("Error on delete, id:", idToUpdate);
+        }
+    )
+}
