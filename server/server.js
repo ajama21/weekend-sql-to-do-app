@@ -17,7 +17,7 @@ let todosRouter = require('./routes/todos.router.js');
 app.use('/todos', todosRouter);
 
 // Start express
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('up and running on port', PORT);
 });
